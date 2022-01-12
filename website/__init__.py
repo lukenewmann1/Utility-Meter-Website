@@ -44,6 +44,7 @@ def create_database(app):
 
 def hour(meterID):
     filename = ("C:\\Users\\LukeNewman\\OneDrive - Queen's University\\Capstone\\Luke\\MeterIDs\\"+(str(meterID)+".csv"))
+    current = datetime.datetime.now()
     with open(filename, 'r') as csvfile:
         rows = csvfile.readlines()
         hour_list = []
@@ -51,10 +52,17 @@ def hour(meterID):
         k = -1
         i = -2
         FMT = '%Y-%m-%d_%H:%M'
+        while(10 < M.datetime.strptime((rows[k].split(",", -1))[0], FMT) < 50) :
+            k=k-1
+            if (current - datetime.strptime((rows[k].split(",", -1))[0], FMT)) > 60)
+                tmp = 'error'
+                hour_list.append(tmp)
+                current = datetime.strptime((rows[k].split(",", -1))[0], FMT)
+        
         hour_high = datetime.strptime('2020-12-25_15:30', FMT) - datetime.strptime('2020-12-25_14:28', FMT)
         hour_low = datetime.strptime('2020-12-25_15:30', FMT) - datetime.strptime('2020-12-25_14:32', FMT)
         while j < 24:
-            while hour_low >= (datetime.strptime((rows[k].split(",", -1))[0], FMT) - datetime.strptime((rows[i].split(",", -1))[0], FMT)) <= hour_high:
+            while (hour_low >= (datetime.strptime((rows[k].split(",", -1))[0], FMT) - datetime.strptime((rows[i].split(",", -1))[0], FMT)) <= hour_high) AND 10 < M.datetime.strptime((rows[k].split(",", -1))[0], FMT) < 50):
                 try:
                     datetime.strptime((rows[i-1].split(",", -1))[0], FMT)
                 except IndexError:
