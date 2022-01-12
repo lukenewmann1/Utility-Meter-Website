@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+
+{% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="/static/styles_all.css">
+</head>
+<body>
+<br>
+<form method="POST">
+    <h3 align="center">Login</h3>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input
+             type="email"
+             class="form-control"
+             id="email"
+             name="email"
+             placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter Password">
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-success btn-lg">Sign In</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+{% endblock %}
+
+<!<div class="form-group">
+        <label for="meterId">Meter ID Number</label>
+        <input
+             type="number"
+             class="form-control"
+             id="meterId"
+             name="meterId"
+             placeholder="Enter Meter Id Number">
+    </div>>

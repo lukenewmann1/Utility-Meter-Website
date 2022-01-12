@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raw Data</title>
+
+<style>
+table, th, td {
+  border: 2px solid black;
+  background-color: #A1CAC7;
+  text-align: center;
+  border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+<br>
+{% if meterId_1 == 00000000 %}
+    <h5>ERROR: No Meter ID's Linked to Account</h5>
+{% endif %}
+{% if meterId_1 != 00000000 %}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <b>Meter ID:</b><b style="color:red"> {{ meterID_1 }} </b>
+        </div>
+    </div>
+</div>
+<table style="width:75%">
+    <tr>
+        <th><b>Time Reported</b></th>
+        <th><b>Consumption Value</b></th>
+        <th style="width:15%"><b>Units</b></th>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:11:52</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+</table>
+{% endif %}
+{% if meterId_2 != 00000000 %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <b>Meter ID:</b><b style="color:red"> {{ meterID_2 }} </b>
+        </div>
+    </div>
+</div>
+<table style="width:75%">
+    <tr>
+        <th><b>Time Reported</b></th>
+        <th><b>Consumption Value</b></th>
+        <th style="width:15%"><b>Units</b></th>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:11:52</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td>2021-08-05T11:12:37</td>
+        <td>1472400</td>
+        <td>m<sup>3</sup></td>
+    </tr>
+</table>
+{% endif %}
+<br>
+</body>
+</html>
