@@ -67,6 +67,10 @@ def usage():
     values_month_3 = 0
     labels_month_4 = 0
     values_month_4 = 0
+    meter_type_1 = 0
+    meter_type_2 = 0
+    meter_type_3 = 0
+    meter_type_4 = 0
     headings = ("Time Range","Usage Statistics")
 
     if current_user.meterID_1 != 0:
@@ -78,6 +82,18 @@ def usage():
             meterID_1_day = day(current_user.meterID_1)
             meterID_1_month = month(current_user.meterID_1)
             current_timestamp_1 = timestamp(current_user.meterID_1)
+            meter_type_1 = int(meterType(current_user.meterID_1))
+
+            if meter_type_1 == 12 or meter_type_1 == 156 or meter_type_1 == 11:
+                meter_type_1 = "Gas"
+            elif meter_type_1 == 13 or meter_type_1 == 203:
+                meter_type_1 = "Water"
+            elif meter_type_1 == 5:
+                meter_type_1 = "Electricity"
+            elif meter_type_1 == 0:
+                meter_type_1 = "*Index Out of Range Error*"
+            else:
+                meter_type_1 = "Undefined"
 
             if meterID_1_hour != 3:
                 usage_hour_1 = meterID_1_hour[0]
@@ -139,6 +155,18 @@ def usage():
             meterID_2_day = day(current_user.meterID_2)
             meterID_2_month = month(current_user.meterID_2)
             current_timestamp_2 = timestamp(current_user.meterID_2)
+            meter_type_2 = int(meterType(current_user.meterID_2))
+
+            if meter_type_2 == 12 or meter_type_2 == 156 or meter_type_2 == 11:
+                meter_type_2 = "Gas"
+            elif meter_type_2 == 13 or meter_type_2 == 203:
+                meter_type_2 = "Water"
+            elif meter_type_2 == 5:
+                meter_type_2 = "Electricity"
+            elif meter_type_2 == 0:
+                meter_type_2 = "*Index Out of Range Error*"
+            else:
+                meter_type_2 = "Undefined"
 
             if meterID_2_hour != 3:
                 usage_hour_2 = meterID_2_hour[0]
@@ -200,6 +228,18 @@ def usage():
             meterID_3_day = day(current_user.meterID_3)
             meterID_3_month = month(current_user.meterID_3)
             current_timestamp_3 = timestamp(current_user.meterID_3)
+            meter_type_3 = int(meterType(current_user.meterID_3))
+
+            if meter_type_3 == 12 or meter_type_3 == 156 or meter_type_3 == 11:
+                meter_type_3 = "Gas"
+            elif meter_type_3 == 13 or meter_type_3 == 203:
+                meter_type_3 = "Water"
+            elif meter_type_3 == 5:
+                meter_type_3 = "Electricity"
+            elif meter_type_3 == 0:
+                meter_type_3 = "*Index Out of Range Error*"
+            else:
+                meter_type_3 = "Undefined"
 
             if meterID_3_hour != 3:
                 usage_hour_3 = meterID_3_hour[0]
@@ -261,6 +301,18 @@ def usage():
             meterID_4_day = day(current_user.meterID_4)
             meterID_4_month = month(current_user.meterID_4)
             current_timestamp_4 = timestamp(current_user.meterID_4)
+            meter_type_4 = int(meterType(current_user.meterID_4))
+
+            if meter_type_4 == 12 or meter_type_4 == 156 or meter_type_4 == 11:
+                meter_type_4 = "Gas"
+            elif meter_type_4 == 13 or meter_type_4 == 203:
+                meter_type_4 = "Water"
+            elif meter_type_4 == 5:
+                meter_type_4 = "Electricity"
+            elif meter_type_4 == 0:
+                meter_type_4 = "*Index Out of Range Error*"
+            else:
+                meter_type_4 = "Undefined"
 
             if meterID_4_hour != 3:
                 usage_hour_4 = meterID_4_hour[0]
@@ -369,7 +421,11 @@ def usage():
                            status_1=status_1,
                            status_2=status_2,
                            status_3=status_3,
-                           status_4=status_4)
+                           status_4=status_4,
+                           meter_type_1=meter_type_1,
+                           meter_type_2=meter_type_2,
+                           meter_type_3=meter_type_3,
+                           meter_type_4=meter_type_4)
 
 @views.route('/raw-data')
 @login_required
