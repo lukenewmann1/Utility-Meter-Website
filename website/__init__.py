@@ -129,6 +129,17 @@ def timestamp(meterID):
         rows = csvfile.readlines()
         t_stamp = str((rows[-1].split(",", -1))[0])
         return t_stamp
+    
+def meterType(meterID):
+    filename = ("C:\\Users\\LukeNewman\\OneDrive - Queen's University\\Capstone\\Luke\\MeterIDs\\"+(str(meterID)+".csv"))
+    with open(filename, 'r') as csvfile:
+        rows = csvfile.readlines()
+        try:
+            type = str((rows[-1].split(",", -1))[2])
+        except:
+            type = 0
+            return type
+        return type
 
 # status 0 -> cannot find file in directory
 # status 1 -> meter ID is not 0
