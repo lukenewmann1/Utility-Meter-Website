@@ -1,0 +1,509 @@
+{% extends "base.html" %} {% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<html>
+<head>
+    <link rel="stylesheet" href="/static/styles_all.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<br>
+<div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Usage Dashboard</h1>
+            </div>
+        </div>
+    </div>
+<b >Welcome back, </b>
+    <b style="color:red">{{ first_name }} </b>
+    <b style="color:red">{{ last_name }}!</b>
+<br>
+<a id="usage" href="/raw-data" style="color: black">Raw Consumption Data [Click Here]</a>
+<br>
+<br>
+{% if meterId_1 == 0 and meterId_2 == 0 and meterId_3 == 0 and meterId_4 == 0 %}
+    <h5>No Meter ID's Associated With Account...</h5>
+{% else %}
+    <div class="wrapper">
+    <section class="left">
+        {% if meterId_1 != 00000000 and status_1 == 1 %}
+        <h4>Meter ID: {{ meterId_1 }}</h4>
+        <h6>Meter Type: {{ meter_type_1 }}</h6>
+        <table class="content-table">
+            <caption>Last Updated: {{ timestamp }}</caption>
+            <thead>
+            <tr>
+                {% for header in headings %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Past Hour</td>
+                <td>{{ usage_hour }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Day</td>
+                <td>{{ usage_day }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Week</td>
+                <td>{{ usage_week }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Month</td>
+                <td>{{ usage_month }} m<sup>3</sup></td>
+            </tr>
+            </tbody>
+        </table>
+        <canvas id="bar-chart-1" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-1"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_hour_1 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_hour_1 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Usage (24hr Period)'
+                  }
+                }
+              }
+            });
+        </script>
+        <br>
+        <canvas id="bar-chart-2" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-2"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_week_1 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_week_1 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Weekly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-3" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-3"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_month_1 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_month_1 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Yearly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+    {% elif status_1 == 0 %}
+        <h4>Meter ID: {{ meterId_1 }}</h4>
+        <p>Internal Server Error for Retrieving Meter Data...</p>
+        <p>If Error Persists, Contact our Technical Support Team.</p>
+    {% else %}
+
+    {% endif %}
+     {% if meterId_3 != 00000000 and status_3 == 1 %}
+        <br>
+        <br>
+        <h4>Meter ID: {{ meterId_3 }}</h4>
+        <h6>Meter Type: {{ meter_type_3 }}</h6>
+        <table class="content-table">
+            <caption>Last Updated: {{ timestamp_3 }}</caption>
+            <thead>
+            <tr>
+                {% for header in headings %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Past Hour</td>
+                <td>{{ usage_hour_3 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Day</td>
+                <td>{{ usage_day_3 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Week</td>
+                <td>{{ usage_week_3 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Month</td>
+                <td>{{ usage_month_3 }} m<sup>3</sup></td>
+            </tr>
+            </tbody>
+        </table>
+        <canvas id="bar-chart-4" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-4"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_hour_3 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_hour_3 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Usage (24hr Period)'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-5" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-5"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_week_3 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_week_3 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Weekly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-6" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-6"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_month_3 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_month_3 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Yearly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+    {% elif status_3 == 0 %}
+        <h4>Meter ID: {{ meterId_3 }}</h4>
+        <p>Internal Server Error for Retrieving Meter Data...</p>
+        <p>If Error Persists, Contact our Technical Support Team.</p>
+    {% else %}
+
+    {% endif %}
+    </section>
+    <section class="right">
+        {% if meterId_2 != 00000000 and status_2 == 1 %}
+        <h4>Meter ID: {{ meterId_2 }}</h4>
+        <h6>Meter Type: {{ meter_type_2 }}</h6>
+        <table class="content-table">
+            <caption>Last Updated: {{ timestamp_2 }}</caption>
+            <thead>
+            <tr>
+                {% for header in headings %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Past Hour</td>
+                <td>{{ usage_hour_2 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Day</td>
+                <td>{{ usage_day_2 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Week</td>
+                <td>{{ usage_week_2 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Month</td>
+                <td>{{ usage_month_2 }} m<sup>3</sup></td>
+            </tr>
+            </tbody>
+        </table>
+        <canvas id="bar-chart-7" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-7"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_hour_2 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_hour_2 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Usage (24hr Period)'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-8" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-8"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_week_2 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_week_2 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Weekly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-9" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-9"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_month_2 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_month_2 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Yearly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+    {% elif status_2 == 0 %}
+        <h4>Meter ID: {{ meterId_2 }}</h4>
+        <p>Internal Server Error for Retrieving Meter Data...</p>
+        <p>If Error Persists, Contact our Technical Support Team.</p>
+    {% else %}
+
+    {% endif %}
+   {% if meterId_4 != 00000000 and status_4 == 1 %}
+        <br>
+        <br>
+        <h4>Meter ID: {{ meterId_4 }}</h4>
+        <h6>Meter Type: {{ meter_type_4 }}</h6>
+        <table class="content-table">
+            <caption>Last Updated: {{ timestamp_4 }}</caption>
+            <thead>
+            <tr>
+                {% for header in headings %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Past Hour</td>
+                <td>{{ usage_hour_4 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Day</td>
+                <td>{{ usage_day_4 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Week</td>
+                <td>{{ usage_week_4 }} m<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td>Past Month</td>
+                <td>{{ usage_month_4 }} m<sup>3</sup></td>
+            </tr>
+            </tbody>
+        </table>
+        <canvas id="bar-chart-10" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-10"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_hour_4 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_hour_4 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Usage (24hr Period)'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-11" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-11"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_week_4 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_week_4 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Weekly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+        <br>
+        <canvas id="bar-chart-12" width="400" height="350"></canvas>
+        <script>
+                new Chart(document.getElementById("bar-chart-12"), {
+                type: 'bar',
+                data: {
+                  labels: {{ labels_month_4 | safe }},
+                  datasets: [
+                    {
+                      label: "Usage in (m^3)",
+                      backgroundColor: "#0d538c",
+                      data: {{ values_month_4 | safe }}
+                    }
+                  ]
+                },
+                options: {
+                  responsive: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Yearly Usage'
+                  }
+                }
+              }
+            });
+    </script>
+    {% elif status_4 == 0 %}
+        <h4>Meter ID: {{ meterId_4 }}</h4>
+        <p>Internal Server Error for Retrieving Meter Data...</p>
+        <p>If Error Persists, Contact our Technical Support Team.</p>
+    {% else %}
+    {% endif %}
+    </section>
+</div>
+{% endif %}
+
+<br>
+<div class="row">
+    <div class="col text-center">
+        <a href="/manage-meters" class="next">Add / Remove &raquo;</a>
+    </div>
+</div>
+<br>
+</body>
+</html>
+
+{% endblock %}

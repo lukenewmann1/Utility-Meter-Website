@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block title %}Meter Management{% endblock %}
+
+{% block content %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Meter Management</title>
+    <link rel="stylesheet" href="/static/styles_all.css">
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Meter Management</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <b style="text-align: center">Add or Remove Meter ID's for Account Under: </b>
+            <b style="text-align: center">{{ first_name }} </b>
+            <b style="text-align: center">{{ last_name }}</b>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+<div class="col">
+    <div class="left">
+        <h4>Add Meter ID</h4>
+        <form method="POST">
+            <div class="form-group">
+                <label for="add_meterId"></label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="add_meterId"
+                        name="add_meterId"
+                        placeholder="Enter Meter ID #">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-success btn-sm" name="form-group" value="add_meterId">Add Meter</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div class="col">
+    <section class="right">
+        <h4>Remove Meter ID</h4>
+        <form method="POST">
+            <div class="form-group">
+                <label for="del_meterId"></label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="del_meterId"
+                        name="del_meterId"
+                        placeholder="Enter Meter ID #">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-danger btn-sm" name="form-group" value="del_meterId">Remove Meter</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <a href="/consumption" class="previous">&laquo; Back</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}
